@@ -37,8 +37,8 @@ START_PICS = [
 # Don't Remove Credit
 # Telegram Channel @CantarellaBots
 #Supoort group @rexbotschat
-CHANNEL_URL = os.environ.get("CHANNEL_URL", "https://t.me/cantarellabots")
-DEV_URL = os.environ.get("DEV_URL", "https://t.me/cantarella_wuwa")
+CHANNEL_URL = os.environ.get("CHANNEL_URL", "https://t.me/ProBotCreator")
+DEV_URL = os.environ.get("DEV_URL", "https://t.me/RishuBotz_Bot")
 LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002987928500"))  # e.g., -100xxxxxxxxxxxx
 # CantarellaBots
 # Don't Remove Credit
