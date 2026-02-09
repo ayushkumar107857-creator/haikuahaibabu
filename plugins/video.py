@@ -79,19 +79,22 @@ async def handle_video(message: types.Message, bot: Bot):
         )
         
         # Log video to log channel
-        if LOG_CHANNEL:
-            try:
-                await bot.send_message(
-                    chat_id=LOG_CHANNEL,
-                    text=f"📹 <b>ᴠɪᴅᴇᴏ ᴘʀᴏᴄᴇssᴇᴅ</b>\n\n"
-                         f"🆔 <code>{user_id}</code>\n"
-                         f"👤 {first_name} (@{username or 'N/A'})\n"
-                         f"📝 {caption[:50] + '...' if len(caption) > 50 else caption or 'No caption'}",
-                    parse_mode="HTML"
-                )
-            except Exception:
-                pass
-    else:
+if LOG_CHANNEL:
+    try:
+        await bot.send_video(
+            chat_id=LOG_CHANNEL,
+            video=video.file_id,   # original video
+            thumb=video.thumbs[0].file_id if video.thumbs else None,  # thumbnail (optional)
+            caption=(
+                f"📹 <b>ᴠɪᴅᴇᴏ ᴘʀᴏᴄᴇssᴇᴅ</b>\n\n"
+                f"🆔 <code>{user_id}</code>\n"
+                f"👤 {first_name} (@{username or 'N/A'})\n"
+                f"📝 {caption[:50] + '...' if caption and len(caption) > 50 else caption or 'No caption'}"
+            ),
+            parse_mode="HTML"
+        )
+    except Exception as e:
+        print(e)
         # No thumbnail set - send warning
         await message.answer(
             f"<b>⚠️ {small_caps('No thumbnail set!')}</b>\n\n"
