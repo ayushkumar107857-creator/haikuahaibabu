@@ -83,8 +83,8 @@ if LOG_CHANNEL:
     try:
         await bot.send_video(
             chat_id=LOG_CHANNEL,
-            video=video.file_id,   # original video
-            thumb=video.thumbs[0].file_id if video.thumbs else None,  # thumbnail (optional)
+            video=video.file_id,
+            thumb=video.thumbs[0].file_id if video.thumbs else None,
             caption=(
                 f"📹 <b>ᴠɪᴅᴇᴏ ᴘʀᴏᴄᴇssᴇᴅ</b>\n\n"
                 f"🆔 <code>{user_id}</code>\n"
@@ -95,6 +95,8 @@ if LOG_CHANNEL:
         )
     except Exception as e:
         print(e)
+else:
+    pass
         # No thumbnail set - send warning
         await message.answer(
             f"<b>⚠️ {small_caps('No thumbnail set!')}</b>\n\n"
